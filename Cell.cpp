@@ -10,25 +10,20 @@ public:
     int x;
     int y;
 
-    void leftClick() {
+    bool leftClick() {
         // can't press cell that has a flag
-        if (cell_layer[2]) return;
-        else if (!cell_layer[1]) return;
+        if (cell_layer[2]) return false;
+        else if (!cell_layer[1]) return false;
         // can press it
         cell_layer[1] = 0; // remove button
-        if (cell_layer[0] == -1) {
-            std::cout << "You Lose!!!\n";
-        }
+        return cell_layer[0] == -1;
     }
     
     void rightClick() {
-        if (cell_layer[1]) cell_layer[2] = 1;
-    }
-    void addFlag() {
-        // add flag only if button is available
         if (cell_layer[1]) {
-            cell_layer[2] = 1;
+            cell_layer[2] = !cell_layer[2];
         }
+
     }
 private:
     
